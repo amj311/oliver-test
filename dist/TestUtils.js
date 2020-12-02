@@ -9,7 +9,6 @@ function sendResult(result) {
 }
 function oTest(name, test, ms) {
     if (ms === void 0) { ms = 15000; }
-    var throwTimeout = setTimeout(function () { throw new TestFailures_1.TimeoutFailure(ms); }, ms);
     var result = new TestResult_1.TestResult(name);
     var testStart = Date.now();
     try {
@@ -28,7 +27,6 @@ function oTest(name, test, ms) {
         }
         ;
     }
-    clearTimeout(throwTimeout);
     var elapsed = Date.now() - testStart;
     result.setTime(elapsed);
     sendResult(result);

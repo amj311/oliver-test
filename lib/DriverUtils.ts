@@ -103,7 +103,7 @@ export class TestFilesCompiler {
         let compiler = this;
         function onCompilationComplete(err: any, stdout: any, stderr: any) {
             if (err) {
-                console.log("Could not compile!")
+                console.log("Could not compile Typescript files!")
                 console.log(err)
             }
             else {
@@ -114,12 +114,18 @@ export class TestFilesCompiler {
                     let file = compiler.compiledFiles.get(fileName);
                     if (file) file.setTestPath(testPath);
                 }
-                compiler.onCompletion();
             }
+            compiler.onCompletion();
         }
 
-        var compileProc = childProcess.exec('tsc --outDir .ot-tsc-tmp --module commonjs --target es5 --esModuleInterop' + tsPaths.join(" "), onCompilationComplete);
-        // compileProc.stderr?.on("data", (data)=> console.log(data.toString()))
+        if (tsPaths.length>0) {
+            let compileProc:{stderr:any} = childProcess.exec('tsc --outDir .ot-tsc-tmp --module commonjs --target es5 --esModuleInterop' + tsPaths.join(" "), onCompilationComplete);
+            compileProc.stderr?.on("data", (data:any)=> console.log(data.toString()))    
+        }
+        else {
+            console.log("No Typescript files to compile.");
+            compiler.onCompletion();
+        }
     }
 
     onCompletion() {

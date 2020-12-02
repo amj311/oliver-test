@@ -81,6 +81,7 @@ var TestFilesCompiler = /** @class */ (function () {
         this.compiledFiles = new Map(); // key: basename of file
     }
     TestFilesCompiler.prototype.compileFiles = function (rawPaths, outDir, exportCompiledFiles) {
+        var _a;
         this.exportCompiledFiles = exportCompiledFiles;
         this.outDir = outDir;
         // this.filesLeftToCompile = rawPaths.length;
@@ -100,7 +101,7 @@ var TestFilesCompiler = /** @class */ (function () {
         var compiler = this;
         function onCompilationComplete(err, stdout, stderr) {
             if (err) {
-                console.log("Could not compile!");
+                console.log("Could not compile Typescript files!");
                 console.log(err);
             }
             else {
@@ -112,11 +113,17 @@ var TestFilesCompiler = /** @class */ (function () {
                     if (file)
                         file.setTestPath(testPath);
                 }
-                compiler.onCompletion();
             }
+            compiler.onCompletion();
         }
-        var compileProc = child_process_1.default.exec('tsc --outDir .ot-tsc-tmp --module commonjs --target es5 --esModuleInterop' + tsPaths.join(" "), onCompilationComplete);
-        // compileProc.stderr?.on("data", (data)=> console.log(data.toString()))
+        if (tsPaths.length > 0) {
+            var compileProc = child_process_1.default.exec('tsc --outDir .ot-tsc-tmp --module commonjs --target es5 --esModuleInterop' + tsPaths.join(" "), onCompilationComplete);
+            (_a = compileProc.stderr) === null || _a === void 0 ? void 0 : _a.on("data", function (data) { return console.log(data.toString()); });
+        }
+        else {
+            console.log("No Typescript files to compile.");
+            compiler.onCompletion();
+        }
     };
     TestFilesCompiler.prototype.onCompletion = function () {
         this.exportCompiledFiles(Array.from(this.compiledFiles.values()));
