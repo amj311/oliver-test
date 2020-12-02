@@ -22,7 +22,9 @@ const ASCII_LOGO = `
 
 import childProcess from 'child_process';
 import colors from 'colors';
+import { expect as oExpect } from './Assertions';
 import { getFilesFromDir, TestFilesCompiler, TestFilesRunner } from "./DriverUtils";
+import { oTest } from './TestUtils';
 
 const TSC_OUT_DIR = ".ot-tsc-tmp";
 
@@ -42,3 +44,6 @@ export function runTestDir(testDir:string) {
 
     compiler.compileFiles(rawFiles, TSC_OUT_DIR, runTests);
 }
+
+export const test:any = oTest;
+export const expect:any = oExpect;

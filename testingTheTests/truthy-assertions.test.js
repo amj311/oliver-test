@@ -1,6 +1,4 @@
-const {expect} = require("../dist/Assertions");
-const {oTest} = require("../dist/TestUtils");
-
+const oTest = require("./dist/index.js")
 
 oTest("expect.true: true", function() {
     expect.true(true);

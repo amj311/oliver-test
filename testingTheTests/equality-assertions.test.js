@@ -1,6 +1,4 @@
-const {expect} = require("../dist/Assertions");
-const {EqualityFailure} = require("../dist/TestFailures");
-const {oTest} = require("../dist/TestUtils");
+const oTest = require("./dist/index.js")
 
 console.log("HELLO!!!!!!")
 
@@ -22,7 +20,7 @@ oTest("expect.equal: Reference", function() {
     arr2.pop();
     expect.equal(arr2,arr);
 
-    let fail = new EqualityFailure("failtest",true,false)
+    let fail = new Map()
     let fail2 = fail;
     fail2.expected = true;
     expect.equal(fail,fail2);
@@ -30,8 +28,8 @@ oTest("expect.equal: Reference", function() {
 
 
 oTest("expect.equal: Reference (Fail Case)", function() {
-    let fail = new EqualityFailure("failtest",true,false)
-    let fail2 = new EqualityFailure("failtest",true,false)
+    let fail = new Map()
+    let fail2 = new Map()
     expect.equal(fail,fail2);
 })
 
