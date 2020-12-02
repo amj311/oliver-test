@@ -27,7 +27,11 @@ export class TestFailure implements Error {
 }
 
 
-
+export class TimeoutFailure extends TestFailure {
+    constructor(ms:number) {
+        super(`Triggered timeout after ${ms} ms`);
+    }
+}
 
 
 export class FoundErrorFailure extends TestFailure {

@@ -1,8 +1,8 @@
-const oTest = require("./dist/index.js")
+const {expect,test} = require("../dist/index");
 
 console.log("HELLO!!!!!!")
 
-oTest("expect.equal: Primitive", function() {
+test("expect.equal: Primitive", function() {
     expect.equal(5,5);
     expect.equal(2+3,5);
 
@@ -14,7 +14,7 @@ oTest("expect.equal: Primitive", function() {
 console.log("HELLO!!!!!!")
 console.log("HELLO!!!!!!")
 
-oTest("expect.equal: Reference", function() {
+test("expect.equal: Reference", function() {
     let arr = [1,2,3,4,5];
     let arr2 = arr;
     arr2.pop();
@@ -27,20 +27,20 @@ oTest("expect.equal: Reference", function() {
 })
 
 
-oTest("expect.equal: Reference (Fail Case)", function() {
+test("expect.equal: Reference (Fail Case)", function() {
     let fail = new Map()
     let fail2 = new Map()
     expect.equal(fail,fail2);
 })
 
 
-oTest("expect.equal: Array (Fail Case)", function() {
+test("expect.equal: Array (Fail Case)", function() {
     let arr = [1,2,3,4,5];
     let arr2 = [...arr];
     expect.equal(arr2,arr);
 })
 
-oTest("expect.equal: ArrayString (Fail Case)", function() {
+test("expect.equal: ArrayString (Fail Case)", function() {
     let arr = [1,2,3,4,5];
     let str = "1,2,3,4,5";
     expect.equal(str,arr);
@@ -48,7 +48,7 @@ oTest("expect.equal: ArrayString (Fail Case)", function() {
 
 
 
-oTest("expect.equalLoose", function() {
+test("expect.equalLoose", function() {
     let num = "5";
     let num2 = 5;
     expect.equalLoose(num2,num);

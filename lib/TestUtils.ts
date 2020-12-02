@@ -1,4 +1,4 @@
-import { AssertionFailure, FoundErrorFailure, TestFailure } from "./TestFailures";
+import { AssertionFailure, FoundErrorFailure, TestFailure, TimeoutFailure } from "./TestFailures";
 import { TestResult } from "./TestResult";
 import { FLAGS } from "./DriverUtils";
 
@@ -11,7 +11,7 @@ function sendResult(result:TestResult) {
 
 export type TestBody = () => void;
 
-export function oTest(name:string, test:TestBody) {
+export function oTest(name:string, test:TestBody, ms:number=15000):void {
     let result = new TestResult(name)
     let testStart = Date.now();
     
@@ -20,7 +20,7 @@ export function oTest(name:string, test:TestBody) {
         result.setPassed(true);
     }
     catch (e) {
-        if (e instanceof AssertionFailure) {
+        if (e instanceof TestFailure) {
             result.setPassed(false);
             result.setFailure(e);
             // e.print();
