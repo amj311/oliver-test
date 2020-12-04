@@ -14,7 +14,7 @@ function genericAssertEqual(name,actual,expected) {
     attemptAssertion(assert,failure);
 }
 
-module.exports.expect = {
+module.exports.assertions = {
     /**
      * Checks equality with loose equality operator
      * @param name 

@@ -26,7 +26,7 @@ const { getFilesFromDir, FLAGS } = require('./DriverUtils');
 const TestFilesCompiler = require('./TestFilesCompiler');
 const TestFilesRunner = require('./TestFilesRunner');
 const oTest = require('./oTest');
-const { expect } = require("./Assertions"); 
+const { assertions } = require("./Assertions"); 
 
 const TSC_OUTDIR = ".ot-tsc-tmp";
 
@@ -47,4 +47,4 @@ function runTestDir(testDir) {
     compiler.compileFiles(rawFiles, TSC_OUTDIR, runTests);
 }
 
-module.exports = {runTestDir, test: oTest, expect}
+module.exports = {runTestDir, test: oTest, expect: assertions}
