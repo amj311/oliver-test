@@ -44,6 +44,8 @@ In order to run tests with Oliver Test, you need to create at least:
 and provides a path to your test files.
 - One or more test suite files that import and call `test(name: string, testBody:function)`.
 
+See [Writing Tests](#writing-tests) for details on creating these files.
+
 Run your tests by running the 'initiator' file through the console, either directly with `node <path-to-test-initiator-file>` or as an npm script (if you have set one up) with `npm run test`.
 
 For example, consider a project with the following structure:
