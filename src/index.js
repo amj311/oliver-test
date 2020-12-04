@@ -17,18 +17,20 @@ const ASCII_LOGO = `
 ██║..........................╚═╝...╚══════╝╚══════╝...╚═╝.....██║
 ██║...........................................................██║
 ████████████████████████████████████████████████████████████████║
-  ╚═════════════════════════════════════════════════════════════╝                                                         
+  ╚═════════════════════════════════════════════════════════════╝
 `
 
-import childProcess from 'child_process';
-import colors from 'colors';
-import { expect as oExpect } from './Assertions';
-import { getFilesFromDir, TestFilesCompiler, TestFilesRunner } from "./DriverUtils";
-import { oTest } from './TestUtils';
+var childProcess = require('child_process');
+var colors = require('colors');
+const { getFilesFromDir, FLAGS } = require('./DriverUtils');
+const TestFilesCompiler = require('./TestFilesCompiler');
+const TestFilesRunner = require('./TestFilesRunner');
+const oTest = require('./oTest');
+const { expect } = require("./Assertions"); 
 
-const TSC_OUT_DIR = ".ot-tsc-tmp";
+const TSC_OUTDIR = ".ot-tsc-tmp";
 
-export function runTestDir(testDir:string) {
+function runTestDir(testDir) {
     console.log(colors.green(ASCII_LOGO));
 
     const rawFiles = getFilesFromDir(testDir,".test.");
@@ -36,14 +38,13 @@ export function runTestDir(testDir:string) {
     const runner = new TestFilesRunner();
     const compiler = new TestFilesCompiler();
 
-    function runTests(testFiles: any) {
+    function runTests(testFiles) {
         runner.runFiles(testFiles, ()=>{
-            childProcess.exec('rm -rf '+TSC_OUT_DIR);
+            childProcess.exec('rm -rf '+TSC_OUTDIR);
         });
     }
 
-    compiler.compileFiles(rawFiles, TSC_OUT_DIR, runTests);
+    compiler.compileFiles(rawFiles, TSC_OUTDIR, runTests);
 }
 
-export const test:any = oTest;
-export const expect:any = oExpect;
+module.exports = {runTestDir, test: oTest, expect}

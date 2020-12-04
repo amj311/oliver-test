@@ -1,4 +1,4 @@
-const {expect,test} = require("../dist/index");
+import { test, expect } from '../src/index'
 
 test("expect.true: true", function() {
     expect.true(true);

@@ -2,9 +2,8 @@
   "name": "oliver-test",
   "version": "1.0.0",
   "description": "Lightweight library for testing javascript and typescript",
-  "main": "dist/index.js",
+  "main": "src/index.js",
   "scripts": {
-    "build": "tsc",
     "test": "node otest.js"
   },
   "repository": {

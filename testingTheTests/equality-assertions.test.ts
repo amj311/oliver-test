@@ -1,6 +1,4 @@
-const {expect,test} = require("../dist/index");
-
-console.log("HELLO!!!!!!")
+import { expect, test } from '../src/index';
 
 test("expect.equal: Primitive", function() {
     expect.equal(5,5);
@@ -22,7 +20,6 @@ test("expect.equal: Reference", function() {
 
     let fail = new Map()
     let fail2 = fail;
-    fail2.expected = true;
     expect.equal(fail,fail2);
 })
 
@@ -45,8 +42,6 @@ test("expect.equal: ArrayString (Fail Case)", function() {
     let str = "1,2,3,4,5";
     expect.equal(str,arr);
 })
-
-
 
 test("expect.equalLoose", function() {
     let num = "5";
