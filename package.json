@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Lightweight library for testing javascript and typescript",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "node runTests.js"
   },
