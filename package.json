@@ -1,6 +1,6 @@
 {
   "name": "oliver-test",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Lightweight library for testing javascript and typescript",
   "main": "index.js",
   "types": "types.d.ts",
