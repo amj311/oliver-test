@@ -30,10 +30,11 @@ Add a test command:
 
 ``` json
 // package.json
+
 ...
-  "scripts": {
-    "test": "node <path-to-test-initiator-file>"
-  }
+"scripts": {
+  "test": "node <path-to-test-initiator-file>"
+}
 ...
 ```
 
@@ -63,6 +64,7 @@ For example, consider a project with the following structure:
 
 ``` json
 // package.json
+
 ...
   "scripts": {
     "test": "node run-tests.js"
@@ -116,9 +118,9 @@ Assertions are all implemented as methods of the `expect` object. These are the 
 | :-------- | :------- |
 | `equal(actual:any, expected:any)` | Checks that `actual` is strongly equal to `expected`. |
 | `equalLoose(actual:any, expected:any)` | Checks that `actual` is loosely equal to `expected`. |
-| `truthy(actual:any)` | Checks that `actual` is not truthy. |
+| `truthy(actual:any)` | Checks that `actual` is truthy. |
 | `true(actual:any)` | Checks that `actual` is equal to `true`. |
-| `falsey(actual:any)` | Checks that `actual` is not falsey. |
+| `falsey(actual:any)` | Checks that `actual` is falsey. |
 | `false(actual:any)` | Checks that `actual` is equal to `false`. |
 
 ### Handling Errors
