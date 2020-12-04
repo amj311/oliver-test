@@ -32,9 +32,9 @@ Add a test command:
 // package.json
 
 ...
-"scripts": {
-  "test": "node <path-to-test-initiator-file>"
-}
+  "scripts": {
+    "test": "node <path-to-test-initiator-file>"
+  }
 ...
 ```
 
