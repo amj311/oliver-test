@@ -95,7 +95,7 @@ test("Addition", function() {
 
 These are the supported assertions as of the latest version:
 
-| Assertion | Behavior |
+<!-- | Assertion | Behavior | -->
 | :-------- | :------- |
 | `equals(actual:any, expected:any)` | Checks that `actual` is strongly equal to `expected`. |
 | `equalsLoose(actual:any, expected:any)` | Checks that `actual` is loosely equal to `expected`. |
