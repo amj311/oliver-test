@@ -1,4 +1,4 @@
-const { expect, test } = require('../index')
+const { expect, test } = require('../../index');
 const Mod = require("./mod");
 
 test("expect.true: true", function() {
