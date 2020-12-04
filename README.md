@@ -2,8 +2,7 @@
 
 A lightweight and easy-to-use library for testing JavaScript and TypeScript.
 
-![Oliver Test Demo]( ./docs/images/logo-scroll.gif )
-
+<img src="./docs/images/logo-scroll.gif" alt="Logo" width="200"/>
 
 ## Installation
 
