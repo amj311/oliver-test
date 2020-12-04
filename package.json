@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "description": "Lightweight library for testing javascript and typescript",
   "main": "index.js",
-  "types": "index.d.ts",
+  "types": "types.d.ts",
   "scripts": {
     "test": "node runTests.js"
   },
@@ -19,6 +19,7 @@
   "homepage": "https://github.com/amj311/oliver-test#readme",
   "dependencies": {
     "@types/node": "^14.14.7",
+    "boxen": "^4.2.0",
     "colors": "^1.4.0",
     "core-js": "^3.6.5",
     "typescript": "^3.9.7"

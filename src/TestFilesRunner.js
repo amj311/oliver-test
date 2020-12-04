@@ -1,7 +1,8 @@
+const boxen = require('boxen');
 var childProcess = require('child_process');
 const { yellow } = require('colors');
 const { FLAGS } = require('./DriverUtils');
-const {fgPrimary, bold, fgPass, fgFail} = require("./formatters");
+const { fgPrimary, bold, fgPass, fgFail } = require("./formatters");
 const TestFile = require("./TestFile");
 const TestFileReport = require('./TestFileReport');
 
@@ -30,7 +31,7 @@ module.exports = class TestFilesRunner {
     }
 
     runTestFile(testFile, caller) {
-        function onChildTerminate(err, stdout, stderr) {            
+        function onChildTerminate(err, stdout, stderr) {
             let fileReport = new TestFileReport(testFile.origPath);
             let msg = stdout;
 
@@ -83,24 +84,35 @@ module.exports = class TestFilesRunner {
         let timeLabel = "Time:";
         let labelWidth = suitesLabel.length;
         console.log(bold(fgPrimary("Tests Complete!\n")));
-        console.log(
-            bold(suitesLabel+" ".repeat(labelWidth-suitesLabel.length)),
-            (this.filesPassed > 0 ? bold(fgPass(" "+this.filesPassed+" passed,")) : ""),
-            (this.filesFailed > 0 ? bold(fgFail(this.filesFailed+" failed,")) : ""),
-            (this.testFiles.length + " total")
-        )
-        console.log(
-            bold(testsLabel+" ".repeat(labelWidth-testsLabel.length)),
-            (this.testsPassed > 0 ? bold(fgPass(" "+this.testsPassed+" passed,")) : ""),
-            (this.testsFailed > 0 ? bold(fgFail(this.testsFailed+" failed,")) : ""),
-            (this.totalTests + " total")
-        )
-        console.log(
-            bold(timeLabel+" ".repeat(labelWidth-timeLabel.length)),
-            yellow(" "+bold(this.time+" ms"))
-        )
+
+        let suiteSummary = 
+            bold(suitesLabel + " ".repeat(labelWidth - suitesLabel.length)) +
+            (this.filesPassed > 0 ? bold(fgPass(" " + this.filesPassed + " passed, ")) : "") +
+            (this.filesFailed > 0 ? bold(fgFail(this.filesFailed + " failed, ")) : "") +
+            (this.testFiles.length + " total");
+        
+        let testSummary = 
+            bold(testsLabel + " ".repeat(labelWidth - testsLabel.length)) +
+            (this.testsPassed > 0 ? bold(fgPass(" " + this.testsPassed + " passed, ")) : "") +
+            (this.testsFailed > 0 ? bold(fgFail(this.testsFailed + " failed, ")) : "") +
+            (this.totalTests + " total");
+            
+        let timeSummary = 
+            bold(timeLabel + " ".repeat(labelWidth - timeLabel.length)) +
+            yellow(" " + bold(this.time + " ms"));
+        
+        let summary = [suiteSummary,testSummary,timeSummary].join("\n")
+
+        // console.log(summary);
+
+        let borderColor = this.passedAll() ? 'greenBright' : 'redBright';
+        console.log(boxen(summary, {padding: 1, borderStyle: 'round', borderColor}));
 
         this.onCompleteCb();
+    }
+
+    passedAll() {
+        return this.filesFailed == 0 && this.testsFailed == 0;
     }
 
 }
