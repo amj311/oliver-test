@@ -1,4 +1,4 @@
-import { test, expect } from '../index'
+import { test, expect } from '../../index'
 
 test("expect.true: true", function() {
     expect.true(true);
