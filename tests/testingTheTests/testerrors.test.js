@@ -5,7 +5,7 @@ test("not a function (Fail Case)", function() {
     num();
 })
 
-test("null (Fail Case)", function() {
+test("Split String", function() {
     const str = null;
     str.split(" ");
 })
