@@ -2,7 +2,7 @@
 
 A lightweight and easy-to-use library for testing JavaScript and TypeScript.
 
-<img src="./docs/images/logo-scroll.gif" alt="Logo" width="200"/>
+<img src="./docs/images/logo-scroll.gif" alt="Logo" width="500"/>
 
 ## Installation
 
