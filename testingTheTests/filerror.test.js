@@ -1,4 +1,4 @@
-const { test, expect } = require("oliver-test")
+const { test, expect } = require('../src/index')
 
 try {
     throw new Error("catch me!");
