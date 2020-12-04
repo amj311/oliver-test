@@ -31,7 +31,7 @@ Add a test command:
 ``` json
 // package.json
 ...
-"scripts": {
+  "scripts": {
     "test": "node <path-to-test-initiator-file>"
   }
 ...
@@ -64,7 +64,7 @@ For example, consider a project with the following structure:
 ``` json
 // package.json
 ...
-"scripts": {
+  "scripts": {
     "test": "node run-tests.js"
   }
 ...
