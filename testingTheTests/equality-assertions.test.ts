@@ -1,4 +1,4 @@
-import { expect, test } from '../src/index';
+import { expect, test } from '../index';
 
 test("expect.equal: Primitive", function() {
     expect.equal(5,5);

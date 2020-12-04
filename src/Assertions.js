@@ -14,7 +14,7 @@ function genericAssertEqual(name,actual,expected) {
     attemptAssertion(assert,failure);
 }
 
-module.exports.assertions = {
+module.exports.expect = {
     /**
      * Checks equality with loose equality operator
      * @param name 
@@ -25,7 +25,7 @@ module.exports.assertions = {
         let assert = function() {
             return actual == expected;
         }
-        let failure = new EqualityFailure({name:"assertEqualLoose",actual,expected});
+        let failure = new EqualityFailure({name:"equalLoose",actual,expected});
         attemptAssertion(assert,failure);
     },
 
@@ -35,16 +35,16 @@ module.exports.assertions = {
      * @param expected 
      */
     equal(actual,expected) {
-        genericAssertEqual("assertEqual",actual,expected)
+        genericAssertEqual("equal",actual,expected)
     },
 
 
     true(actual) {
-        genericAssertEqual("assertTrue",actual,true)
+        genericAssertEqual("true",actual,true)
     },
     
     false(actual) {
-        genericAssertEqual("assertFalse",actual,false)
+        genericAssertEqual("false",actual,false)
     },
 
 
@@ -53,7 +53,7 @@ module.exports.assertions = {
             if (actual) return true;
             else return false;
         }
-        let failure = new TruthyFailure({name:"assertTruthy",expected:'truthy',actual});
+        let failure = new TruthyFailure({name:"truthy",expected:'truthy',actual});
 
         attemptAssertion(assert,failure);
     },
@@ -63,7 +63,7 @@ module.exports.assertions = {
             if (!actual) return true;
             else return false;
         }
-        let failure = new TruthyFailure({name:"assertFalsey",expected:'falsey',actual});
+        let failure = new TruthyFailure({name:"falsey",expected:'falsey',actual});
 
         attemptAssertion(assert,failure);
     }

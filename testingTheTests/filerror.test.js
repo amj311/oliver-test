@@ -1,4 +1,4 @@
-const { test, expect } = require('../src/index')
+const { test, expect } = require('../index')
 
 try {
     throw new Error("catch me!");

@@ -1,6 +1,6 @@
 import {TestFailure} from '../src/TestFailures';
 import Mod from "./mod";
-import { test, expect } from '../src/index'
+import { test, expect } from '../index'
 
 
 test("import TestFailure.ts", function() {

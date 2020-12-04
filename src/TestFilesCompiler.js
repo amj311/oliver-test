@@ -1,7 +1,7 @@
 var pathLib = require('path');
 var childProcess = require('child_process');
 const { getFilesFromDir } = require('./DriverUtils');
-const {fgPrimary} = require("./formatters");
+const {fgPrimary, bold} = require("./formatters");
 const TestFile = require("./TestFile");
 
 module.exports = class TestFilesCompiler {
@@ -15,7 +15,7 @@ module.exports = class TestFilesCompiler {
         this.exportCompiledFiles = exportCompiledFiles;
         this.outDir = outDir;
         
-        console.log("Preparing tests in "+fgPrimary(rawPaths.length)+" files...")
+        console.log("Preparing tests in "+bold(fgPrimary(rawPaths.length))+" files...")
 
         let tsPaths = [];
         for (let rawPath of rawPaths) {
@@ -28,7 +28,7 @@ module.exports = class TestFilesCompiler {
         let compiler = this;
         function onCompilationComplete(err, stdout, stderr) {
             if (err) {
-                console.log("Could not compile Typescript files!")
+                console.log("Could not compile TypeScript files!")
                 console.log(err)
             }
             else {
@@ -43,7 +43,7 @@ module.exports = class TestFilesCompiler {
             compiler.onCompletion();
         }
         if (tsPaths.length>0) {
-            console.log("Compiling "+fgPrimary(tsPaths.length)+" Typescript files...")
+            console.log("Compiling "+bold(fgPrimary(tsPaths.length))+" TypeScript files...")
             childProcess.exec('tsc --target es5 --esModuleInterop --allowJs --outDir '+this.outDir+" "+tsPaths.join(" "), onCompilationComplete);
         }
         else {

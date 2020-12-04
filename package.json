@@ -1,31 +1,25 @@
 {
   "name": "oliver-test",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "Lightweight library for testing javascript and typescript",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node otest.js"
+    "test": "node runTests.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amj311/oliver-test.git"
   },
-  "author": "amj311",
+  "author": "amj311 <contact@arthurjudd.com> (arthurjudd.com)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amj311/oliver-test/issues"
   },
   "homepage": "https://github.com/amj311/oliver-test#readme",
   "dependencies": {
-    "child_process": "^1.0.2",
-    "class-transformer": "^0.3.1",
-    "colors": "^1.4.0",
-    "fs": "0.0.1-security",
-    "path": "^0.12.7",
-    "reflect-metadata": "^0.1.13"
-  },
-  "devDependencies": {
     "@types/node": "^14.14.7",
-    "typescript": "^4.0.5"
+    "colors": "^1.4.0",
+    "core-js": "^3.6.5",
+    "typescript": "^3.9.7"
   }
 }

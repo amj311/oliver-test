@@ -1,6 +1,6 @@
 const TestResult = require("./TestResult");
 const {FLAGS} = require("./DriverUtils");
-const {TestFailure, FoundErrorFailure} = require("./TestFailures");
+const {TestFailure, FoundErrorFailure, EqualityFailure} = require("./TestFailures");
 
 function sendResult(result) {
     console.log(([FLAGS.MSG_START,FLAGS.TEST_END,result.testName,JSON.stringify(result),FLAGS.MSG_END].join(FLAGS.DELIM)));
@@ -15,7 +15,7 @@ module.exports = function oTest(name, testBody) {
         result.setPassed(true);
     }
     catch (e) {
-        if (e instanceof TestFailure) {
+        if (e.failType) {
             result.setPassed(false);
             result.setFailure(e);
         }

@@ -18,13 +18,10 @@ function determineType(obj) {
 
 const exp = module.exports;
 exp.TestFailure = class extends Error {
-    failType = "generic";
-    name = "Test Failure";
-    message;
-    stack;
-
     constructor(message = "") {
         super();
+        this.failType = "generic";
+        this.name = "Test Failure";
         this.message = message || `Failed test.`;
     }
 
@@ -40,10 +37,9 @@ exp.TimeoutFailure = class extends exp.TestFailure {
 }
 
 exp.FoundErrorFailure = class extends exp.TestFailure {
-    failType = "error";
-
     constructor(e) {
         super();
+        this.failType = "error";
         this.stack = e.stack;
         this.message = e.message;
     }
@@ -59,6 +55,7 @@ exp.FoundErrorFailure = class extends exp.TestFailure {
 exp.AssertionFailure = class extends exp.TestFailure {
     constructor(name) {
         super();
+        this.name = name;
         this.message = `Failed assertion: `+name;
     }
 
@@ -68,13 +65,11 @@ exp.AssertionFailure = class extends exp.TestFailure {
 }
 
 
-exp.EqualityFailure = class extends exp.TestFailure {
-    failType = "equality";
-    expected;
-    actual;
+exp.EqualityFailure = class extends exp.AssertionFailure {
 
     constructor(props) {
         super(props.name)
+        this.failType = "equality";
         this.expected = props.expected;
         this.actual = props.actual;
     }
@@ -86,21 +81,18 @@ exp.EqualityFailure = class extends exp.TestFailure {
     }
 }
 
-exp.TruthyFailure = class extends exp.TestFailure {
-    failType = "truthy";
-    expected;
-    actual;
-
+exp.TruthyFailure = class extends exp.AssertionFailure {
     constructor(props) {
         super(props.name)
+        this.failType = "truthy";
         this.expected = props.expected;
         this.actual = props.actual;
     }
     
     print() {
         console.log(this.message);
-        console.log(`Expected: `, this.expected);
-        console.log(`Actual: `, this.actual);
+        console.log(`Expected:`, this.expected);
+        console.log(`Actual:`, this.actual);
     }
 }
 

@@ -1,4 +1,4 @@
-const { test } = require('../src/index')
+const { test } = require('../index')
 
 test("not a function (Fail Case)", function() {
     const num = 5;
