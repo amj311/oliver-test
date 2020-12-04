@@ -3,7 +3,7 @@
 
 A lightweight and easy-to-use library for testing JavaScript and TypeScript.
 
-<img src="./docs/images/logo-scroll.gif" alt="Logo" width="500"/>
+<img src="./docs/images/logo-scroll.gif" alt="Logo" width="600"/>
 <hr/>
 
 ## Contents <!-- omit in toc -->
@@ -136,13 +136,13 @@ The test driver runs all tests suites concurrently and prints their results as s
 Each test suite is shown with a summary and list of indidual test names.
 The icon to the left of each test indicates its success.
 
-<img src="./docs/images/suite-pass-output.png" alt="Logo" width="450"/>
+<img src="./docs/images/suite-pass-output.png" alt="Logo" width="500"/>
 
 ### Reporting Errors
 If a test fails an explanation will be printed directly beneath its name.
 If there are any suite-level errors they are printed at the end of the summary regardless of when they occurred in the suite file.
 
-<img src="./docs/images/suite-fail-output.png" alt="Logo" width="450"/>
+<img src="./docs/images/suite-fail-output.png" alt="Logo" width="500"/>
 
 ### Timing
 Test durations are recorded as the composite time during which each individual test ran. This does not include the duration of operations performed by the test driver when starting, compiling, or reporting.
