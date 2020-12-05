@@ -85,6 +85,8 @@ To run all the the tests in `./tests` you would run `node run-tests.js` or `npm 
 
 ## Writing Tests
 
+### Test Suites
+
 Oliver Test expects tests to be organized into test suite files.
 
 The test driver will identify any file as a test suite if it ends in `.test.js` or `.test.ts`. Each test suite may contain any number of tests, which may contain any number of assertions.
