@@ -12,7 +12,7 @@ test("Good Test", function() {
 })
 
 const str = "don't change me!";
-str = "watch me";
+str = "dare me";
 
 
 test("This test should never be found!", function() {
