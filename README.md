@@ -12,6 +12,7 @@ A lightweight and easy-to-use library for testing JavaScript and TypeScript.
 - [Installation](#installation)
 - [Running Tests](#running-tests)
 - [Writing Tests](#writing-tests)
+  - [Test Suites](#test-suites)
   - [Assertions](#assertions)
   - [Handling Errors](#handling-errors)
 - [Test Output](#test-output)
