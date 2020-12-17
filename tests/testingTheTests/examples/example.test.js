@@ -1,4 +1,4 @@
-const { test, expect } = require('../../index');
+const { test, expect } = require('../../../index');
 
 test("Addition", function() {
     let sum = 2+2;

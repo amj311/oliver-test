@@ -1,4 +1,4 @@
-import { expect, test } from '../../index';
+import { expect, test } from '../../../index';
 
 test("expect.equal: Primitive", function() {
     expect.equal(5,5);
@@ -24,20 +24,20 @@ test("expect.equal: Reference", function() {
 })
 
 
-test("expect.equal: Reference (Fail Case)", function() {
+test("(Fail Case) expect.equal: Reference", function() {
     let fail = new Map()
     let fail2 = new Map()
     expect.equal(fail,fail2);
 })
 
 
-test("expect.equal: Array (Fail Case)", function() {
+test("(Fail Case) expect.equal: Array", function() {
     let arr = [1,2,3,4,5];
     let arr2 = [...arr];
     expect.equal(arr2,arr);
 })
 
-test("expect.equal: ArrayString (Fail Case)", function() {
+test("(Fail Case) expect.equal: ArrayString", function() {
     let arr = [1,2,3,4,5];
     let str = "1,2,3,4,5";
     expect.equal(str,arr);

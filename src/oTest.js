@@ -6,7 +6,7 @@ function sendResult(result) {
     console.log(([FLAGS.MSG_START,FLAGS.TEST_END,result.testName,JSON.stringify(result),FLAGS.MSG_END].join(FLAGS.DELIM)));
 }
 
-module.exports = function oTest(name, testBody) {
+module.exports = function runTBody(name, testBody) {
     let result = new TestResult(name)
     let testStart = Date.now();
     
