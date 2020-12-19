@@ -22,12 +22,12 @@ const ASCII_LOGO = `
 
 var childProcess = require('child_process');
 var colors = require('colors');
-const { getFilesFromDir, FLAGS } = require('./src/DriverUtils');
+const { getFilesFromDir } = require('./src/DriverUtils');
 const TestFilesCompiler = require('./src/TestFilesCompiler');
 const TestFilesRunner = require('./src/TestFilesRunner');
-const oTest = require('./src/oTest');
-const { expect } = require("./src/Assertions"); 
-const { EqualityFailure, TestFailure } = require('./src/TestFailures');
+const test = require('./src/oTest');
+const expect = require("./src/Assertions"); 
+const { oWhen, oMock } = require('./src/oMock');
 
 const TSC_OUTDIR = ".ot-tsc-tmp";
 
@@ -48,4 +48,4 @@ function runTestDir(testDir) {
     compiler.compileFiles(rawFiles, TSC_OUTDIR, runTests);
 }
 
-module.exports = {runTestDir, test: oTest, expect}
+module.exports = {runTestDir, test, expect, when:oWhen, mock:oMock}

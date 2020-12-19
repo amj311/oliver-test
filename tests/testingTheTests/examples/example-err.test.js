@@ -1,4 +1,4 @@
-const { test, expect } = require('../../index');
+const { test, expect } = require('../../../index');
 
 
 test("Split String", function() {

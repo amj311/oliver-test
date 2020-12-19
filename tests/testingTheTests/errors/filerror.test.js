@@ -1,4 +1,4 @@
-const { test, expect } = require('../../index')
+const { test, expect } = require('../../../index')
 
 try {
     throw new Error("catch me!");
@@ -16,5 +16,5 @@ str = "dare me";
 
 
 test("This test should never be found!", function() {
-    expect.true(true)
+    expect.true(false)
 })

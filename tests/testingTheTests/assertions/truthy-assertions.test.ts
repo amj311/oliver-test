@@ -1,4 +1,4 @@
-import { test, expect } from '../../index'
+import { test, expect } from '../../../index'
 
 test("expect.true: true", function() {
     expect.true(true);
@@ -6,7 +6,7 @@ test("expect.true: true", function() {
 test("expect.true: expressions", function() {
     expect.true(Math.pow(2,2)==4);
 })
-test("expect.true: Fail Case", function() {
+test("(Fail Case) expect.true", function() {
     expect.true(false);
 })
 
@@ -19,17 +19,17 @@ test("expect.truthy", function() {
     expect.truthy("true");
 })
 
-test("expect.truthy: null (Fail Case)", function() {
+test("(Fail Case) expect.truthy: null", function() {
     expect.truthy(null);
 })
 
-test("expect.truthy: false (Fail Case)", function() {
+test("(Fail Case) expect.truthy: false", function() {
     expect.truthy(false);
 })
-test("expect.truthy: undefined (Fail Case)", function() {
+test("(Fail Case) expect.truthy: undefined", function() {
     expect.truthy(undefined);
 })
-test("expect.truthy: 0 (Fail Case)", function() {
+test("(Fail Case) expect.truthy: 0", function() {
     expect.truthy(0);
 })
 
@@ -40,7 +40,7 @@ test("expect.false: false", function() {
 test("expect.false: expression", function() {
     expect.false(Math.pow(2,2)==8);
 })
-test("expect.false: Fail Case", function() {
+test("(Fail Case) expect.false", function() {
     expect.false(true);
 })
 
@@ -53,9 +53,9 @@ test("expect.falsey", function() {
     expect.falsey(undefined);
 })
 
-test("expect.falsey: True (Fail Case)", function() {
+test("(Fail Case) expect.falsey: True", function() {
     expect.falsey(true);
 })
-test("expect.falsey: Expression (Fail Case)", function() {
+test("(Fail Case) expect.falsey: Expression", function() {
     expect.falsey(1);
 })
