@@ -1,18 +1,28 @@
 const {owhen,oMock} = require("../src/oMock")
 
 class Printer {
+    constructor(string) {
+        string.split(" ");
+    }
+
     printString(arg = 0) {
         console.log("original "+arg)
     }
 }
 
+function mockKlass(klass) {
+    console.log(Object.getOwnPropertyDescriptors(klass))
 
-let mockPrinter = oMock(Printer);
-mockPrinter.printString(1);
+    // class MockKlass extends klass {
+    //     constructor() {
+    //         console.log("mage sub!")
+    //     }
+    // }
 
-// oWhen(mockPrinter,"printString",1).thenDo(()=>console.log("mock 1")).thenDo(()=>console.log("mock 1 again"))
-mockPrinter.when("printString",1).thenDo(()=>console.log("mock 1")).thenDo(()=>console.log("mock 1 again"))
+    // return new MockKlass();
+}
 
-mockPrinter.printString(1);
-mockPrinter.printString(2);
-mockPrinter.printString(1);
+mockKlass(Printer)
+Printer.constructor = Object;
+console.log(Printer.constructor.toString())
+console.log(new Printer())

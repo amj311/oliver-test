@@ -29,9 +29,11 @@ let oWhen = function(obj,funName,...mockArgs) {
         },
         thenReturn(val) {
             addMock(()=>{return val});
+            return this;
         },
         thenThrow(error) {
             addMock(() => {throw error}); 
+            return this;
         }
     }
 }

@@ -66,6 +66,23 @@ test("When Printer method thenDo, no args, full return", ()=>{
 })
 
 
+test("When Printer method behavior stack", ()=>{
+    let prtr = new Printer(0);
+    let mockVal = 5;
+
+    when(prtr,"getString",2)
+        .thenDo(() => console.log(mockVal))
+        .thenReturn(mockVal);
+
+
+    expect.equal(prtr.getString(), origStr)         // returns "original value"
+    expect.equal(prtr.getString(1), origStr)        // returns "original value"
+    expect.equal(prtr.getString(2), undefined)      // prints "mocked val"
+    expect.equal(prtr.getString(2), mockVal)        // returns "mocked val"
+    expect.equal(prtr.getString(2), mockVal)        // returns "mocked val"  
+})
+
+
 
 test("Mock Printer original method works", ()=>{
     let mockPrtr = mock(Printer) as Printer;
