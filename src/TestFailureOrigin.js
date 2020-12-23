@@ -1,41 +1,42 @@
 const lineReader = require('n-readlines');
+const util = require("util");
 
 class TestFailureOrigin {
-  constructor(props={}) {
-    let {targLine,lineNum,targPos,prevLine,nextLine} = props;
+  constructor(props = {}) {
+    let { targLine, lineNum, targPos, prevLine, nextLine } = props;
     this.targLine = targLine;
-    this.lineNum = lineNum*1;
-    this.targPos = targPos*1;
+    this.lineNum = lineNum * 1;
+    this.targPos = targPos * 1;
     this.prevLine = prevLine;
     this.nextLine = nextLine;
   }
 
-  print(config={}) {
-      let {useColor,showPeriph,showCursor} = config;
-      let tab = " ".repeat(2);
+  print(config = {}) {
+    let { useColor, showPeriph, showCursor } = config;
+    let tab = " ".repeat(2);
 
-      function printLine(line,num){
-        console.log((showPeriph? num+tab:"") + line);
-      };
+    function printLine(line, num) {
+      console.log((showPeriph ? num + tab : "") + line);
+    };
 
-      function printCursor(pos){
-        console.log((showPeriph? " "+tab:"")+" ".repeat(pos-1)+"^");
-      };
+    function printCursor(pos) {
+      console.log((showPeriph ? " " + tab : "") + " ".repeat(pos - 1) + "^");
+    };
 
-      if (showPeriph) printLine(this.prevLine,this.lineNum-1);
-      printLine(this.targLine,this.lineNum);
-      if (showCursor) printCursor(this.targPos);
-      // if (showPeriph) printLine(this.nextLine,this.lineNum+1);
-    }
+    if (showPeriph) printLine(this.prevLine, this.lineNum - 1);
+    printLine(this.targLine, this.lineNum);
+    if (showCursor) printCursor(this.targPos);
+    if (showPeriph && this.nextLine) printLine(this.nextLine,this.lineNum+1);
+  }
 }
 
-extractTestFailureOrigin = function () {
+extractTestFailureOrigin = function (e = new Error()) {
   let pathRegex = /[A-Z]\:(\\[\w\d\ \^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\%\.\+\~\_]+)*/g;
   let coorRegex = /\:[0-9]*\:[0-9]*/g;
   let tsImportRegex = /[.\w]+expect./g;
   let tsImportReplace = "expect.";
 
-  let stackLines = new Error().stack.split("\n");
+  let stackLines = e.stack.split("\n");
   let firstTestLine = stackLines.filter(l => l.lastIndexOf(".test.") > -1)[0]
 
   let path = pathRegex.exec(firstTestLine)[0]
@@ -66,16 +67,16 @@ extractTestFailureOrigin = function () {
 
   function replaceTS(string) {
     let newstr = string;
-    return newstr.replace(tsImportRegex,tsImportReplace);
+    return newstr.replace(tsImportRegex, tsImportReplace);
   }
 
   let origtargLine = targLineBuf.toString('ascii');
   let targLine = replaceTS(origtargLine);
   targPos -= origtargLine.length - targLine.length;
-  let prevLine = prevLineBuf? replaceTS(prevLineBuf.toString('ascii')) : null;
-  let nextLine = nextLineBuf? replaceTS(nextLineBuf.toString('ascii')) : null;
+  let prevLine = prevLineBuf ? replaceTS(prevLineBuf.toString('ascii')) : null;
+  let nextLine = nextLineBuf ? replaceTS(nextLineBuf.toString('ascii')) : null;
 
-  return new TestFailureOrigin({targLine,lineNum,targPos,nextLine,prevLine})
+  return new TestFailureOrigin({ targLine, lineNum, targPos, nextLine, prevLine })
 }
 
-module.exports = {extractTestFailureOrigin, TestFailureOrigin}
+module.exports = { extractTestFailureOrigin, TestFailureOrigin }

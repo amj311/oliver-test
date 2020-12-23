@@ -31,18 +31,18 @@ exp.TimeoutFailure = class extends exp.TestFailure {
 exp.FoundErrorFailure = class extends exp.TestFailure {
   constructor(props) {
     super(props);
-    let {e} = props;
+    let {e,message} = props;
     this.failType = "error";
     this.name = "Found Error Failure";
-    if (e) this.e = new Error(e.message,e.stack);
-    if (e) this.message = e.message;
+    this.stack = e? e.stack : null;
+    this.message = message || e.name+": "+e.message || "no error message";
   }
 
   print() {
     console.log("Ecountered error during test:");
     console.log(this.message);
-    // this.origin.print({ showCursor: true });
-    console.log(this.stack);
+    if (this.origin) this.origin.print({ showCursor: true });
+    if (this.stack) console.log(this.stack);
   }
 }
 
@@ -69,7 +69,7 @@ exp.EqualityFailure = class extends exp.AssertionFailure {
     this.origin.print({ showCursor: true });
     console.log(`Expected (${determineType(this.expected)}):`)
     console.dir(this.expected);
-    console.log(`Actual (${determineType(this.actual)}):`)
+    console.log(`\nActual (${determineType(this.actual)}):`)
     console.dir(this.actual);
   }
 }
@@ -94,7 +94,7 @@ exp.TruthyFailure = class extends exp.AssertionFailure {
 exp.parseTestFailure = function (obj) {
   if (obj.failType == "truthy") return new exp.TruthyFailure(obj);
   if (obj.failType == "equality") return new exp.EqualityFailure(obj);
-  if (obj.failType == "error") return new exp.FoundErrorFailure(obj.e);
+  if (obj.failType == "error") return new exp.FoundErrorFailure(obj);
   if (obj.failType == "generic") return new exp.TestFailure(obj);
   else return new exp.TestFailure("unknown cause");
 }

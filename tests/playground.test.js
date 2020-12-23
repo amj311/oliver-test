@@ -3,12 +3,9 @@
 
 const { TestFailureOrigin } = require("../src/TestFailureOrigin");
 var util = require('util');
+const { test } = require("../index");
 
-// test("test", ()=>{
-//     expect.equal(false,true)
-// })
-
-// let str = util.format((()=>{}).__proto__);
-// console.log(str.substr(0,str.indexOf(" {")))
-
-console.log(typeof new String(""))
+test("(Fail Case) not a function", function() {
+    const num = 5;
+    num();
+})

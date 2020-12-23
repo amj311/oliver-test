@@ -1,6 +1,7 @@
 const TestResult = require("./TestResult");
 const {FLAGS} = require("./DriverUtils");
 const {TestFailure, FoundErrorFailure, EqualityFailure} = require("./TestFailures");
+const { extractTestFailureOrigin } = require("./TestFailureOrigin");
 
 function sendResult(result) {
     console.log(([FLAGS.MSG_START,FLAGS.TEST_END,result.testName,JSON.stringify(result),FLAGS.MSG_END].join(FLAGS.DELIM)));
@@ -21,7 +22,7 @@ module.exports = function runTBody(name, testBody) {
         }
         else {
             result.setPassed(false);
-            result.setFailure(new FoundErrorFailure({e}));
+            result.setFailure(new FoundErrorFailure({e,origin:extractTestFailureOrigin(e)}));
         };
     }
 
