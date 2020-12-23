@@ -74,18 +74,17 @@ exp.EqualityFailure = class extends exp.AssertionFailure {
   }
 }
 
-exp.TruthyFailure = class extends exp.AssertionFailure {
+exp.GenericReasonFailure = class extends exp.AssertionFailure {
   constructor(props={}) {
     super(props)
-    this.failType = "truthy";
-    this.expected = props.expected;
+    this.failType = "reason";
+    this.reason = props.reason;
     this.actual = props.actual;
   }
 
   print() {
-    console.log(this.message);
+    console.log(this.message+this.reason);
     this.origin.print({ showCursor: true });
-    console.log(`Expected:`, this.expected);
     console.log(`Actual:`, this.actual);
   }
 }
@@ -93,6 +92,7 @@ exp.TruthyFailure = class extends exp.AssertionFailure {
 
 exp.parseTestFailure = function (obj) {
   if (obj.failType == "truthy") return new exp.TruthyFailure(obj);
+  if (obj.failType == "reason") return new exp.GenericReasonFailure(obj);
   if (obj.failType == "equality") return new exp.EqualityFailure(obj);
   if (obj.failType == "error") return new exp.FoundErrorFailure(obj);
   if (obj.failType == "generic") return new exp.TestFailure(obj);

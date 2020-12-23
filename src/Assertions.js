@@ -1,5 +1,5 @@
 const { extractTestFailureOrigin } = require("./TestFailureOrigin");
-const { EqualityFailure, TruthyFailure } = require("./TestFailures");
+const { EqualityFailure, TruthyFailure, GenericReasonFailure } = require("./TestFailures");
 
 
 function attemptAssertion(assert,failure) {
@@ -13,6 +13,13 @@ function genericAssertEqual(name,actual,expected) {
         return actual === expected;
     }
     let failure = new EqualityFailure({name,actual,expected});
+    attemptAssertion(assert,failure);
+}
+
+
+function genericAssertIdentity(assert,actual,reason) {
+    let failure = new GenericReasonFailure({actual,reason});
+    console.log(reason,failure)
     attemptAssertion(assert,failure);
 }
 
@@ -41,13 +48,30 @@ module.exports = {
         genericAssertEqual("equal",actual,expected)
     },
 
+    
+    null(actual) {
+        genericAssertIdentity(()=>actual===null,actual,"Expected value to be null, but it was not.")
+    },
+
+    notNull(actual) {
+        genericAssertIdentity(()=>actual!==null,actual,"Expected value not to be null, but it was.")
+    },
+
+    undefined(actual) {
+        genericAssertIdentity(()=>actual===undefined,actual,"Expected value to be undefined, but it was not.")
+    },
+
+    notUndefined(actual) {
+        genericAssertIdentity(()=>actual!==undefined,actual,"Expected value not to be undefined, but it was.")
+    },
+
 
     true(actual) {
-        genericAssertEqual("true",actual,true)
+        genericAssertIdentity(()=>actual===true,actual,"Expected value to be true, but it was not.")
     },
     
     false(actual) {
-        genericAssertEqual("false",actual,false)
+        genericAssertIdentity(()=>actual===false,actual,"Expected value to be false, but it was not.")
     },
 
 
@@ -56,9 +80,7 @@ module.exports = {
             if (actual) return true;
             else return false;
         }
-        let failure = new TruthyFailure({name:"truthy",expected:'truthy',actual});
-
-        attemptAssertion(assert,failure);
+        genericAssertIdentity(assert,actual,"Expected value to be truthy, but it was not.")
     },
 
     falsey(actual) {
@@ -66,9 +88,7 @@ module.exports = {
             if (!actual) return true;
             else return false;
         }
-        let failure = new TruthyFailure({name:"falsey",expected:'falsey',actual});
-
-        attemptAssertion(assert,failure);
+        genericAssertIdentity(assert,actual,"Expected value to be falsey, but it was not.")
     }
 
 }
