@@ -79,23 +79,23 @@ module.exports = class TestFilesRunner {
 
 
     onFinishedAllTests() {
-        let suitesLabel = "Test Suites:";
+        let suitesLabel = "Suites:";
         let testsLabel = "Tests:";
         let timeLabel = "Time:";
-        let labelWidth = suitesLabel.length;
+        let labelWidth = Math.max(suitesLabel.length,testsLabel.length,timeLabel.length);
         console.log(bold(fgPrimary("Tests Complete!\n")));
 
         let suiteSummary = 
             bold(suitesLabel + " ".repeat(labelWidth - suitesLabel.length)) +
-            (this.filesPassed > 0 ? bold(fgPass(" " + this.filesPassed + " passed, ")) : "") +
-            (this.filesFailed > 0 ? bold(fgFail(this.filesFailed + " failed, ")) : "") +
-            (this.testFiles.length + " total");
+            (this.filesPassed > 0 ? bold(fgPass(" " + this.filesPassed + " passed,")) : "") +
+            (this.filesFailed > 0 ? bold(fgFail(" "+this.filesFailed + " failed,")) : "") +
+            (" "+this.testFiles.length + " total");
         
         let testSummary = 
             bold(testsLabel + " ".repeat(labelWidth - testsLabel.length)) +
-            (this.testsPassed > 0 ? bold(fgPass(" " + this.testsPassed + " passed, ")) : "") +
-            (this.testsFailed > 0 ? bold(fgFail(this.testsFailed + " failed, ")) : "") +
-            (this.totalTests + " total");
+            (this.testsPassed > 0 ? bold(fgPass(" " + this.testsPassed + " passed,")) : "") +
+            (this.testsFailed > 0 ? bold(fgFail(" "+this.testsFailed + " failed,")) : "") +
+            (" "+this.totalTests + " total");
             
         let timeSummary = 
             bold(timeLabel + " ".repeat(labelWidth - timeLabel.length)) +
