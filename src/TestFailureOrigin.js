@@ -19,7 +19,7 @@ class TestFailureOrigin {
       };
 
       function printCursor(pos){
-        console.log(tab+" ".repeat(pos)+"^");
+        console.log((showPeriph? " "+tab:"")+" ".repeat(pos-1)+"^");
       };
 
       if (showPeriph) printLine(this.prevLine,this.lineNum-1);
@@ -32,6 +32,8 @@ class TestFailureOrigin {
 extractTestFailureOrigin = function () {
   let pathRegex = /[A-Z]\:(\\[\w\d\ \^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\%\.\+\~\_]+)*/g;
   let coorRegex = /\:[0-9]*\:[0-9]*/g;
+  let tsImportRegex = /[.\w]+expect./g;
+  let tsImportReplace = "expect.";
 
   let stackLines = new Error().stack.split("\n");
   let firstTestLine = stackLines.filter(l => l.lastIndexOf(".test.") > -1)[0]
@@ -62,9 +64,16 @@ extractTestFailureOrigin = function () {
 
   if (!foundline) return console.log("Unexpected end of file.");
 
-  let targLine = targLineBuf.toString('ascii');
-  let prevLine = prevLineBuf? prevLineBuf.toString('ascii') : null;
-  let nextLine = nextLineBuf? nextLineBuf.toString('ascii') : null;
+  function replaceTS(string) {
+    let newstr = string;
+    return newstr.replace(tsImportRegex,tsImportReplace);
+  }
+
+  let origtargLine = targLineBuf.toString('ascii');
+  let targLine = replaceTS(origtargLine);
+  targPos -= origtargLine.length - targLine.length;
+  let prevLine = prevLineBuf? replaceTS(prevLineBuf.toString('ascii')) : null;
+  let nextLine = nextLineBuf? replaceTS(nextLineBuf.toString('ascii')) : null;
 
   return new TestFailureOrigin({targLine,lineNum,targPos,nextLine,prevLine})
 }
