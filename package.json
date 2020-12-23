@@ -5,7 +5,8 @@
   "main": "index.js",
   "types": "src/types.d.ts",
   "scripts": {
-    "test": "node tests/runTests.js"
+    "test": "node tests/runTests.js",
+    "playground": "node tests/playground.js"
   },
   "keywords": ["oliver","test","unit","driver","typescript"],
   "repository": {

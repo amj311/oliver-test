@@ -1,28 +1,23 @@
-const {owhen,oMock} = require("../src/oMock")
+const { expect } = require("..");
+const { test } = require("..");
+const { typeNames, determineType } = require("../src/JsTypes");
 
-class Printer {
-    constructor(string) {
-        string.split(" ");
-    }
+let map = new Map();
+map.set("arr",Array);
+map.set(Array,"arr");
 
-    printString(arg = 0) {
-        console.log("original "+arg)
-    }
-}
+console.log(Array)
+console.log(map.get("arr"))
+console.log(map.get(Array))
 
-function mockKlass(klass) {
-    console.log(Object.getOwnPropertyDescriptors(klass))
+let typeArr = Array.from(map.keys())
 
-    // class MockKlass extends klass {
-    //     constructor() {
-    //         console.log("mage sub!")
-    //     }
-    // }
+console.log(typeArr[1])
+console.log([] instanceof typeArr[1])
 
-    // return new MockKlass();
-}
+if ([] instanceof typeArr[1]) console.log(map.get(typeArr[1]))
+console.log(determineType([]))
 
-mockKlass(Printer)
-Printer.constructor = Object;
-console.log(Printer.constructor.toString())
-console.log(new Printer())
+
+
+expect.true([] instanceof map.get("arr"))

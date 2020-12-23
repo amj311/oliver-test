@@ -1,20 +1,10 @@
+const { determineType } = require("./JsTypes");
 
 /********************\
 | ASSERTION FAILURES |
 \********************/
 
 
-function determineType(obj) {
-    if (Array.isArray(obj)) return "Array";
-    if (obj instanceof Map) return "Map";
-    if (obj instanceof Set) return "Set";
-    if (obj instanceof Promise) return "Promise";
-    if (obj instanceof Function) return "Function";
-
-    else {
-        return typeof obj;
-    }
-}
 
 const exp = module.exports;
 exp.TestFailure = class extends Error {
