@@ -21,7 +21,7 @@ module.exports = function runTBody(name, testBody) {
         }
         else {
             result.setPassed(false);
-            result.setFailure(new FoundErrorFailure(e));
+            result.setFailure(new FoundErrorFailure({e}));
         };
     }
 
