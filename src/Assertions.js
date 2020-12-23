@@ -1,7 +1,9 @@
+const { extractTestFailureOrigin } = require("./TestFailureOrigin");
 const { EqualityFailure, TruthyFailure } = require("./TestFailures");
 
 
 function attemptAssertion(assert,failure) {
+    failure.origin = extractTestFailureOrigin();
     if (!assert()) throw failure;
 }
 
@@ -14,12 +16,13 @@ function genericAssertEqual(name,actual,expected) {
     attemptAssertion(assert,failure);
 }
 
+
 module.exports = {
     /**
      * Checks equality with loose equality operator
-     * @param name 
-     * @param actual 
-     * @param expected 
+     * @param name
+     * @param actual
+     * @param expected
      */
     equalLoose(actual,expected) {
         let assert = function() {

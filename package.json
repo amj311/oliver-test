@@ -5,9 +5,16 @@
   "main": "index.js",
   "types": "src/types.d.ts",
   "scripts": {
-    "test": "node tests/runTests.js"
+    "test": "node tests/runTests.js",
+    "playground": "node tests/playground.test.js"
   },
-  "keywords": ["oliver","test","unit","driver","typescript"],
+  "keywords": [
+    "oliver",
+    "test",
+    "unit",
+    "driver",
+    "typescript"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/amj311/oliver-test.git"
@@ -23,6 +30,7 @@
     "boxen": "^4.2.0",
     "colors": "^1.4.0",
     "core-js": "^3.6.5",
+    "n-readlines": "^1.0.1",
     "typescript": "^3.9.7"
   }
 }
