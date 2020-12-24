@@ -15,6 +15,7 @@ A lightweight and easy-to-use library for testing JavaScript and TypeScript.
 ## Contents <!-- omit in toc -->
 
 - [Installation](#installation)
+  - [Releases](#releases)
 - [Running Tests](#running-tests)
 - [Writing Tests](#writing-tests)
   - [Test Suites](#test-suites)
@@ -50,6 +51,9 @@ Add a test command:
   }
 ...
 ```
+
+### Releases
+For a complete list of releases and features, see the [Releases Doc](/RELEASES.md)
 
 
 
