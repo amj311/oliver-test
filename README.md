@@ -156,7 +156,9 @@ Assertions are all implemented as methods of the `expect` object. These are the 
 | `true(actual:any)` | Checks that `actual` is equal to `true`. |
 | `falsey(actual:any)` | Checks that `actual` is falsey. |
 | `false(actual:any)` | Checks that `actual` is equal to `false`. |
-| `throwsError(actual:any)` | Checks that `actual` is equal to `false`. |
+| `throwsError(operation:function)` | Checks that `operation` throws any error. |
+| `throws(errorClass,operation)` | Checks that `operation` throws an error of type `errorClass`. |
+
 
 
 ### Handling Errors
