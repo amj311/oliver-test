@@ -103,8 +103,6 @@ module.exports = class TestFilesRunner {
         
         let summary = [suiteSummary,testSummary,timeSummary].join("\n")
 
-        // console.log(summary);
-
         let borderColor = this.passedAll() ? 'greenBright' : 'redBright';
         console.log(boxen(summary, {padding: 1, borderStyle: 'round', borderColor}));
 
