@@ -89,10 +89,27 @@ exp.GenericReasonFailure = class extends exp.AssertionFailure {
   }
 }
 
+exp.ThrowsErrorFailure = class extends exp.AssertionFailure {
+  constructor(props={}) {
+    super(props)
+    this.failType = "throws";
+    this.opStr = props.opStr;
+    this.actual = props.actual;
+    this.message += "Expected to throw an error, but did not.";
+  }
+
+  print() {
+    console.log(this.message);
+    this.origin.print({ showCursor: true });
+    console.log(this.opStr);
+  }
+}
+
 
 exp.parseTestFailure = function (obj) {
   if (obj.failType == "truthy") return new exp.TruthyFailure(obj);
   if (obj.failType == "reason") return new exp.GenericReasonFailure(obj);
+  if (obj.failType == "throws") return new exp.ThrowsErrorFailure(obj);
   if (obj.failType == "equality") return new exp.EqualityFailure(obj);
   if (obj.failType == "error") return new exp.FoundErrorFailure(obj);
   if (obj.failType == "generic") return new exp.TestFailure(obj);

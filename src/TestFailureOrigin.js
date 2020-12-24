@@ -36,6 +36,8 @@ extractTestFailureOrigin = function (e = new Error()) {
   let tsImportRegex = /[.\w]+expect./g;
   let tsImportReplace = "expect.";
 
+  if (!e.stack) return null;
+
   let stackLines = e.stack.split("\n");
   let firstTestLine = stackLines.filter(l => l.lastIndexOf(".test.") > -1)[0]
 

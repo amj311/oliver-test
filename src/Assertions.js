@@ -1,5 +1,5 @@
 const { extractTestFailureOrigin } = require("./TestFailureOrigin");
-const { EqualityFailure, TruthyFailure, GenericReasonFailure } = require("./TestFailures");
+const { EqualityFailure, TruthyFailure, GenericReasonFailure, ThrowsErrorFailure } = require("./TestFailures");
 
 
 function attemptAssertion(assert,failure) {
@@ -130,15 +130,24 @@ module.exports = {
 
 
     /**
-     * Checks that a value is falsey
-     * @param actual 
+     * Checks that an operation throws an error. If a class is not provided this will check for `Error` by default
+     * @param errorClass
+     * @param operation
      */
-    falsey(actual) {
+    throwsError(errorClass,operation) {
+        if (!errorClass) errorClass = Error;
         let assert = function() {
-            if (!actual) return true;
-            else return false;
+            try {
+                operation();
+                return false;
+            }
+            catch (e) {
+                if (e instanceof errorClass) return true;
+                else throw e;
+            }
         }
-        genericAssertIdentity(assert,actual,"Expected value to be falsey, but it was not.")
+        let failure = new ThrowsErrorFailure({opStr:operation.toString()});
+        attemptAssertion(assert,failure)
     }
 
 }

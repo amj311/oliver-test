@@ -1,8 +1,28 @@
 const { expect, test, runTestDir } = require("../index");
-
-
-// test("(Fail Case) expect.falsey: True", function() {
-//     expect.falsey(true);
-// })
+const util = require("util");
+const { AssertionFailure, ThrowsErrorFailure } = require("../src/TestFailures");
+const { AssertionError } = require("assert");
 
 runTestDir("./tests/testingTheTests/assertions")
+
+// test("True: throws error", ()=>{
+//     expect.throwsError(AssertionFailure, ()=>{
+//         throw new AssertionFailure({name:"Test"});
+//     });
+// })
+
+// test("True: throws inherited error", ()=>{
+//     expect.throwsError(AssertionFailure, ()=>{
+//         throw new ThrowsErrorFailure({opStr:"Test Op"});
+//     });
+// })
+
+// test("Fail: throws no error", ()=>{
+//     expect.throwsError(AssertionFailure, ()=>{});
+// })
+
+// test("Fail: throws other error", ()=>{
+//     expect.throwsError(ThrowsErrorFailure, ()=>{
+//         throw new AssertionFailure({name:"Test"});
+//     });
+// })
