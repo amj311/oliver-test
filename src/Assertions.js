@@ -65,32 +65,61 @@ module.exports = {
 
 
     
+    /**
+     * Checks that a value is null
+     * @param actual 
+     */
     null(actual) {
         genericAssertIdentity(()=>actual===null,actual,"Expected value to be null, but it was not.")
     },
 
+    /**
+     * Checks that a value is not null
+     * @param actual 
+     */
     notNull(actual) {
         genericAssertIdentity(()=>actual!==null,actual,"Expected value not to be null, but it was.")
     },
 
+    /**
+     * Checks that a value is undefined
+     * @param actual 
+     */
     undefined(actual) {
         genericAssertIdentity(()=>actual===undefined,actual,"Expected value to be undefined, but it was not.")
     },
 
+    /**
+     * Checks that a value is not undefined
+     * @param actual 
+     */
     notUndefined(actual) {
         genericAssertIdentity(()=>actual!==undefined,actual,"Expected value not to be undefined, but it was.")
     },
 
 
+    /**
+     * Checks that a value is equal to true
+     * @param actual 
+     */
     true(actual) {
         genericAssertIdentity(()=>actual===true,actual,"Expected value to be true, but it was not.")
     },
     
+
+    /**
+     * Checks that a value is equal to false
+     * @param actual 
+     */
     false(actual) {
         genericAssertIdentity(()=>actual===false,actual,"Expected value to be false, but it was not.")
     },
 
 
+    /**
+     * Checks that a value is truthy
+     * @param actual 
+     */
     truthy(actual) {
         let assert = function() {
             if (actual) return true;
@@ -99,6 +128,11 @@ module.exports = {
         genericAssertIdentity(assert,actual,"Expected value to be truthy, but it was not.")
     },
 
+
+    /**
+     * Checks that a value is falsey
+     * @param actual 
+     */
     falsey(actual) {
         let assert = function() {
             if (!actual) return true;
