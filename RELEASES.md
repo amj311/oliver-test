@@ -9,8 +9,6 @@
   - Config object for constructor possible for v2
 - CLI
 - Assertions
-  - Show assertion code and line number when failed
-  - Print stacktrace for errorFailure
   - New Assertions:
     - `notEqual(actual:any, unexpected:any)`
     - `notEqualLoose(actual:any, unexpected:any)`
@@ -26,6 +24,7 @@
 
 - [v1.1.0](#v110)
 - [v1.2.0](#v120)
+  - [v1.2.1](#v121)
 
 
 ## v1.1.0
@@ -43,3 +42,7 @@ Below are listed the exposed portions of the API as of the first release.
 
 ## v1.2.0
 - This release added support for mocking with `when` and `mock` methods.
+
+### v1.2.1
+- Assertion failures print code from origin.
+- ErrorFailures print stack trace.
