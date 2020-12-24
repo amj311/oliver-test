@@ -8,13 +8,11 @@ function attemptAssertion(assert,failure) {
 }
 
 
-function genericAssertEqual(name,actual,expected) {
-    let assert = function() {
-        return actual === expected;
-    }
+function genericAssertEqual(assert,name,actual,expected) {
     let failure = new EqualityFailure({name,actual,expected});
     attemptAssertion(assert,failure);
 }
+
 
 
 function genericAssertIdentity(assert,actual,reason) {
@@ -26,27 +24,45 @@ function genericAssertIdentity(assert,actual,reason) {
 
 module.exports = {
     /**
-     * Checks equality with loose equality operator
+     * Checks that two values are loosely equal
      * @param name
      * @param actual
      * @param expected
      */
     equalLoose(actual,expected) {
-        let assert = function() {
-            return actual == expected;
-        }
-        let failure = new EqualityFailure({name:"equalLoose",actual,expected});
-        attemptAssertion(assert,failure);
+        genericAssertEqual(()=>actual!==expected,"equal loose",actual,expected)
     },
 
+    
     /**
-     * Checks equality with strong equals operator
+     * Checks that two values are strongly equal
      * @param actual 
      * @param expected 
      */
     equal(actual,expected) {
-        genericAssertEqual("equal",actual,expected)
+        genericAssertEqual(()=>actual===expected,"equal",actual,expected)
     },
+
+
+    /**
+     * Checks that two values are not strongly equal
+     * @param actual 
+     * @param expected 
+     */
+    notEqual(actual,expected) {
+        genericAssertEqual(()=>actual==expected,"not equal",actual,expected)
+    },
+
+    
+    /**
+     * Checks that two values are not loosely equal
+     * @param actual 
+     * @param expected 
+     */
+    notEqualLoose(actual) {
+        genericAssertEqual(()=>actual!=expected,"not equal loose",actual,expected)
+    },
+
 
     
     null(actual) {
