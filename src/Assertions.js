@@ -127,15 +127,14 @@ module.exports = {
         }
         genericAssertIdentity(assert,actual,"Expected value to be truthy, but it was not.")
     },
-
+    
 
     /**
-     * Checks that an operation throws an error. If a class is not provided this will check for `Error` by default
+     * Checks that `operation` throws an error of type `errorClass`
      * @param errorClass
      * @param operation
      */
-    throwsError(errorClass,operation) {
-        if (!errorClass) errorClass = Error;
+    throws(errorClass,operation) {
         let assert = function() {
             try {
                 operation();
@@ -144,6 +143,26 @@ module.exports = {
             catch (e) {
                 if (e instanceof errorClass) return true;
                 else throw e;
+            }
+        }
+        let failure = new ThrowsErrorFailure({opStr:operation.toString()});
+        attemptAssertion(assert,failure)
+    },
+
+    
+
+    /**
+     * Checks that an operation throws any error.
+     * @param operation
+     */
+    throwsError(operation) {
+        let assert = function() {
+            try {
+                operation();
+                return false;
+            }
+            catch (e) {
+                return true;
             }
         }
         let failure = new ThrowsErrorFailure({opStr:operation.toString()});

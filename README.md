@@ -156,6 +156,7 @@ Assertions are all implemented as methods of the `expect` object. These are the 
 | `true(actual:any)` | Checks that `actual` is equal to `true`. |
 | `falsey(actual:any)` | Checks that `actual` is falsey. |
 | `false(actual:any)` | Checks that `actual` is equal to `false`. |
+| `throwsError(actual:any)` | Checks that `actual` is equal to `false`. |
 
 
 ### Handling Errors

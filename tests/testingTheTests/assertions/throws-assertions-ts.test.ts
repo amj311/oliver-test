@@ -15,25 +15,36 @@ class ChildError extends ParentError {
 }
 
 
+test("True: throwsError", ()=>{
+    expect.throwsError(()=>{
+        throw new Error();
+    });
+})
+
+test("True: throwsError from other error", ()=>{
+    expect.throwsError(()=>{
+        throw new ParentError();
+    });
+})
 
 test("True: throws error", ()=>{
-    expect.throwsError(ParentError, ()=>{
+    expect.throws(ParentError, ()=>{
         throw new ParentError();
     });
 })
 
 test("True: throws inherited error", ()=>{
-    expect.throwsError(ParentError, ()=>{
+    expect.throws(ParentError, ()=>{
         throw new ChildError();
     });
 })
 
 test("Fail: throws no error", ()=>{
-    expect.throwsError(ParentError, ()=>{});
+    expect.throws(ParentError, ()=>{});
 })
 
 test("Fail: throws other error", ()=>{
-    expect.throwsError(ChildError, ()=>{
+    expect.throws(ChildError, ()=>{
         throw new ParentError();
     });
 })
