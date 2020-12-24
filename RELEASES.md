@@ -1,6 +1,7 @@
-# RELEASE PLANS
+# RELEASE PLANS <!-- omit in toc -->
 
-# Upcoming Features
+# Upcoming Features <!-- omit in toc -->
+
 - Supply an array of paths to `runTestDir()` to gather tests from multiple locations into the same report.
 - Supply array of paths to exclude from search
 - Exclude `node_modules` by default
@@ -11,26 +12,34 @@
   - Show assertion code and line number when failed
   - Print stacktrace for errorFailure
   - New Assertions:
-    - `expect.notEqual(actual:any, unexpected:any)`
-    - `expect.null(actual:any)`
-    - `expect.notNull(actual:any)`
-    - `expect.undefined(actual:any)`
-    - `expect.notUndefined(actual:any)`
-    - `expect.throws(errorClass:function, operation:function)`
+    - `notEqual(actual:any, unexpected:any)`
+    - `notEqualLoose(actual:any, unexpected:any)`
+    - `null(actual:any)`
+    - `notNull(actual:any)`
+    - `undefined(actual:any)`
+    - `notUndefined(actual:any)`
+    - `throws(errorClass:function, operation:function)`
+    - `throwsError(operation:function)`
 - beforeEach for all tests in a file
 
-## v1.2.0
-- This release added support for mocking with `when` and `mock` methods.
+# Release Summaries <!-- omit in toc -->
+
+- [v1.1.0](#v110)
+- [v1.2.0](#v120)
+
 
 ## v1.1.0
 Below are listed the exposed portions of the API as of the first release.
 
 - Assertions
-  - `expect.equal(actual:any, expected:any)`
-  - `expect.equalLoose(actual:any, expected:any)`
-  - `expect.true(actual:any)`
-  - `expect.truthy(actual:any)`
-  - `expect.false(actual:any)`
-  - `expect.falsey(actual:any)`
+  - `equal(actual:any, expected:any)`
+  - `equalLoose(actual:any, expected:any)`
+  - `true(actual:any)`
+  - `truthy(actual:any)`
+  - `false(actual:any)`
+  - `falsey(actual:any)`
 - `runTestDir(path:string)`
 - `test(name:string, testBody:function)`
+
+## v1.2.0
+- This release added support for mocking with `when` and `mock` methods.
