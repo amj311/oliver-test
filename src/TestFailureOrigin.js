@@ -33,8 +33,8 @@ class TestFailureOrigin {
 extractTestFailureOrigin = function (e = new Error()) {
   let pathRegex = /[A-Z]\:(\\[\w\d\ \^\&\'\@\{\}\[\]\,\$\=\!\-\#\(\)\%\.\+\~\_]+)*/g;
   let coorRegex = /\:[0-9]*\:[0-9]*/g;
-  let tsImportRegex = /[.\w]+expect./g;
-  let tsImportReplace = "expect.";
+  let tsImportRegex = /index_[\d]./g;
+  let tsImportReplace = "";
 
   let stackLines = e.stack.split("\n");
   let firstTestLine = stackLines.filter(l => l.lastIndexOf(".test.") > -1)[0]
