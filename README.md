@@ -149,11 +149,20 @@ Assertions are all implemented as methods of the `expect` object. These are the 
 | Assertion | Behavior |
 | :-------- | :------- |
 | `equal(actual:any, expected:any)` | Checks that `actual` is strongly equal to `expected`. |
+| `notEqual(actual:any, expected:any)` | Checks that `actual` is not strongly equal to `expected`. |
 | `equalLoose(actual:any, expected:any)` | Checks that `actual` is loosely equal to `expected`. |
+| `notEqualLoose(actual:any, expected:any)` | Checks that `actual` is not loosely equal to `expected`. |
+| `null(actual:any)` | Checks that `actual` is `null`. |
+| `notNull(actual:any)` | Checks that `actual` is not `null`. |
+| `undefined(actual:any)` | Checks that `actual` is `undefined`. |
+| `notUndefined(actual:any)` | Checks that `actual` is not `undefined`. |
 | `truthy(actual:any)` | Checks that `actual` is truthy. |
 | `true(actual:any)` | Checks that `actual` is equal to `true`. |
 | `falsey(actual:any)` | Checks that `actual` is falsey. |
 | `false(actual:any)` | Checks that `actual` is equal to `false`. |
+| `throwsError(operation:function)` | Checks that `operation` throws any error. |
+| `throws(errorClass,operation)` | Checks that `operation` throws an error of type `errorClass`. |
+
 
 
 ### Handling Errors

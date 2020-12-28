@@ -21,4 +21,8 @@ determineType = function(obj) {
     return type;
 }
 
-module.exports = {determineType, typeNames}
+getTypeName = function(klass) {
+    
+}
+
+module.exports = {determineType, typeNames, getTypeName}
