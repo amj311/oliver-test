@@ -22,12 +22,13 @@
 
 # Release Summaries <!-- omit in toc -->
 
-- [v1.1.0](#v110)
-- [v1.2.0](#v120)
+- [v1.1](#v11)
+- [v1.2](#v12)
   - [v1.2.1](#v121)
+- [v1.3](#v13)
 
 
-## v1.1.0
+## v1.1
 Below are listed the exposed portions of the API as of the first release.
 
 - Assertions
@@ -40,9 +41,13 @@ Below are listed the exposed portions of the API as of the first release.
 - `runTestDir(path:string)`
 - `test(name:string, testBody:function)`
 
-## v1.2.0
+## v1.2
 - This release added support for mocking with `when` and `mock` methods.
 
 ### v1.2.1
 - Assertion failures print code from origin.
 - ErrorFailures print stack trace.
+
+
+## v1.3
+- This release added support for mocking with `when` and `mock` methods.
