@@ -1,4 +1,4 @@
-import { test, expect } from '../../../index'
+import { test, expect } from '../../../../../index'
 
 test("expect.true: true", function() {
     expect.true(true);
@@ -7,7 +7,9 @@ test("expect.true: expressions", function() {
     expect.true(Math.pow(2,2)==4);
 })
 test("(Fail Case) expect.true", function() {
-    expect.true(false);
+    expect.throwsError(()=>{
+        expect.true(false);    
+    });
 })
 
 
@@ -20,17 +22,26 @@ test("expect.truthy", function() {
 })
 
 test("(Fail Case) expect.truthy: null", function() {
-    expect.truthy(null);
+    expect.throwsError(()=>{
+        expect.truthy(null);
+    });
+
 })
 
 test("(Fail Case) expect.truthy: false", function() {
-    expect.truthy(false);
+    expect.throwsError(()=>{
+        expect.truthy(false);
+    });
 })
 test("(Fail Case) expect.truthy: undefined", function() {
-    expect.truthy(undefined);
+    expect.throwsError(()=>{
+        expect.truthy(undefined);
+    });
 })
 test("(Fail Case) expect.truthy: 0", function() {
-    expect.truthy(0);
+    expect.throwsError(()=>{
+        expect.truthy(0);
+    });
 })
 
 
@@ -41,7 +52,9 @@ test("expect.false: expression", function() {
     expect.false(Math.pow(2,2)==8);
 })
 test("(Fail Case) expect.false", function() {
-    expect.false(true);
+    expect.throwsError(()=>{
+        expect.false(true);
+    });
 })
 
 
@@ -54,8 +67,12 @@ test("expect.falsey", function() {
 })
 
 test("(Fail Case) expect.falsey: True", function() {
-    expect.falsey(true);
+    expect.throwsError(()=>{
+        expect.falsey(true);
+    });
 })
 test("(Fail Case) expect.falsey: Expression", function() {
-    expect.falsey(1);
+    expect.throwsError(()=>{
+        expect.falsey(1);
+    });
 })

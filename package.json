@@ -6,6 +6,7 @@
   "types": "src/types.d.ts",
   "scripts": {
     "test": "node tests/runTests.js",
+    "examples": "node tests/runExamples.js",
     "playground": "node tests/playground.test.js"
   },
   "keywords": [

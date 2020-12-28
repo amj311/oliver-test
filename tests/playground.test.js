@@ -3,8 +3,6 @@ const util = require("util");
 const { AssertionFailure, ThrowsErrorFailure } = require("../src/TestFailures");
 const { AssertionError } = require("assert");
 
-runTestDir("./tests/testingTheTests/assertions")
-
 // test("True: throws error", ()=>{
 //     expect.throwsError(AssertionFailure, ()=>{
 //         throw new AssertionFailure({name:"Test"});
