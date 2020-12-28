@@ -1,4 +1,4 @@
-import { expect, test, when, mock } from '../../index';
+import { expect, test, when, mock } from '../../../../index';
 
 const origStr = "original"
 

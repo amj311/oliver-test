@@ -1,4 +1,4 @@
-import { expect, test } from '../../../index';
+import { expect, test } from '../../../../../index';
 
 class ParentError implements Error {
     constructor() {
@@ -15,36 +15,43 @@ class ChildError extends ParentError {
 }
 
 
-test("True: throwsError", ()=>{
+test("Pass: throwsError", ()=>{
     expect.throwsError(()=>{
         throw new Error();
     });
 })
 
-test("True: throwsError from other error", ()=>{
+test("Pass: throwsError from other error", ()=>{
     expect.throwsError(()=>{
         throw new ParentError();
     });
 })
 
-test("True: throws error", ()=>{
+test("Pass: throws error", ()=>{
     expect.throws(ParentError, ()=>{
         throw new ParentError();
     });
 })
 
-test("True: throws inherited error", ()=>{
+test("Pass: throws inherited error", ()=>{
     expect.throws(ParentError, ()=>{
         throw new ChildError();
     });
 })
 
-test("Fail: throws no error", ()=>{
-    expect.throws(ParentError, ()=>{});
+test("Fail: Throws no error", ()=>{
+    try {
+        expect.throws(ParentError, ()=>{});
+    }
+    catch(e) {
+        expect.equal(e.failType, "throws")
+    }
 })
 
 test("Fail: throws other error", ()=>{
-    expect.throws(ChildError, ()=>{
-        throw new ParentError();
+    expect.throws(ParentError, ()=>{
+        expect.throws(ChildError, ()=>{
+            throw new ParentError();
+        });
     });
 })
