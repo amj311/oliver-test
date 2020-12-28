@@ -18,6 +18,7 @@
   - [v1.2.1](#v121)
 - [v1.3](#v13)
   - [v1.3.1](#v131)
+  - [v1.3.1](#v131-1)
 
 
 ## v1.1
@@ -54,3 +55,6 @@ Below are listed the exposed portions of the API as of the first release.
  
 ### v1.3.1
 - `runTestDir()` prints curent version.
+- 
+### v1.3.1
+- Fixed breaking issue: `expect.falsey` had been removed in previous release
