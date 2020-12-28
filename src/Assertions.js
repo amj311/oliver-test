@@ -128,6 +128,19 @@ module.exports = {
         genericAssertIdentity(assert,actual,"Expected value to be truthy, but it was not.")
     },
     
+    
+    /**
+     * Checks that a value is falsey
+     * @param actual 
+     */
+    falsey(actual) {
+        let assert = function() {
+            if (!actual) return true;
+            else return false;
+        }
+        genericAssertIdentity(assert,actual,"Expected value to be falsey, but it was not.")
+    },
+    
 
     /**
      * Checks that `operation` throws an error of type `errorClass`
