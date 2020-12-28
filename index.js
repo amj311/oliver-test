@@ -28,11 +28,15 @@ const TestFilesRunner = require('./src/TestFilesRunner');
 const test = require('./src/oTest');
 const expect = require("./src/Assertions"); 
 const { oWhen, oMock } = require('./src/oMock');
+const { fgPrimary, bold } = require('./src/formatters');
 
 const TSC_OUTDIR = ".ot-tsc-tmp";
 
 function runTestDir(testDir) {
     console.log(colors.green(ASCII_LOGO));
+
+    var pjson = require('./package.json');
+    console.log("Running version "+bold(fgPrimary(pjson.version)));
 
     const rawFiles = getFilesFromDir(testDir,".test.");
     
