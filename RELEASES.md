@@ -9,25 +9,17 @@
   - Config object for constructor possible for v2
 - CLI
 - Assertions
-  - New Assertions:
-    - `notEqual(actual:any, unexpected:any)`
-    - `notEqualLoose(actual:any, unexpected:any)`
-    - `null(actual:any)`
-    - `notNull(actual:any)`
-    - `undefined(actual:any)`
-    - `notUndefined(actual:any)`
-    - `throws(errorClass:function, operation:function)`
-    - `throwsError(operation:function)`
 - beforeEach for all tests in a file
 
 # Release Summaries <!-- omit in toc -->
 
-- [v1.1.0](#v110)
-- [v1.2.0](#v120)
+- [v1.1](#v11)
+- [v1.2](#v12)
   - [v1.2.1](#v121)
+- [v1.3](#v13)
 
 
-## v1.1.0
+## v1.1
 Below are listed the exposed portions of the API as of the first release.
 
 - Assertions
@@ -40,9 +32,21 @@ Below are listed the exposed portions of the API as of the first release.
 - `runTestDir(path:string)`
 - `test(name:string, testBody:function)`
 
-## v1.2.0
+## v1.2
 - This release added support for mocking with `when` and `mock` methods.
 
 ### v1.2.1
 - Assertion failures print code from origin.
 - ErrorFailures print stack trace.
+
+
+## v1.3
+- New Assertions:
+  - `notEqual(actual:any, unexpected:any)`
+  - `notEqualLoose(actual:any, unexpected:any)`
+  - `null(actual:any)`
+  - `notNull(actual:any)`
+  - `undefined(actual:any)`
+  - `notUndefined(actual:any)`
+  - `throws(errorClass:function, operation:function)`
+  - `throwsError(operation:function)`
