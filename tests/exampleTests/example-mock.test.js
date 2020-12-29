@@ -1,4 +1,4 @@
-const { when, mock, test, expect } = require("../../../index");
+const { when, mock, test, expect } = require("../../index");
 
 let val = "original value"
 let log = "mocked log"

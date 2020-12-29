@@ -1,5 +1,5 @@
-const { test, expect } = require('../../index')
-const { determineType, typeNames } = require('../../src/JsTypes');
+const { test, expect } = require('../../../../index')
+const { determineType } = require('../../../../src/JsTypes');
 
 test("Determine Array", function() {
     expect.equal(determineType([]), "Array")

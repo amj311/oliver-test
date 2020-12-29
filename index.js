@@ -25,14 +25,18 @@ var colors = require('colors');
 const { getFilesFromDir } = require('./src/DriverUtils');
 const TestFilesCompiler = require('./src/TestFilesCompiler');
 const TestFilesRunner = require('./src/TestFilesRunner');
-const test = require('./src/oTest');
+const { runTBody,setBeforeEach } = require('./src/oTest');
 const expect = require("./src/Assertions"); 
 const { oWhen, oMock } = require('./src/oMock');
+const { fgPrimary, bold } = require('./src/formatters');
 
 const TSC_OUTDIR = ".ot-tsc-tmp";
 
 function runTestDir(testDir) {
     console.log(colors.green(ASCII_LOGO));
+
+    var pjson = require('./package.json');
+    console.log("Running version "+bold(fgPrimary(pjson.version)));
 
     const rawFiles = getFilesFromDir(testDir,".test.");
     
@@ -48,4 +52,4 @@ function runTestDir(testDir) {
     compiler.compileFiles(rawFiles, TSC_OUTDIR, runTests);
 }
 
-module.exports = {runTestDir, test, expect, when:oWhen, mock:oMock}
+module.exports = {runTestDir, test:runTBody, beforeEach:setBeforeEach, expect, when:oWhen, mock:oMock}

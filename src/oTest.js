@@ -7,11 +7,16 @@ function sendResult(result) {
     console.log(([FLAGS.MSG_START,FLAGS.TEST_END,result.testName,JSON.stringify(result),FLAGS.MSG_END].join(FLAGS.DELIM)));
 }
 
-module.exports = function runTBody(name, testBody) {
+let beforeEach = null;
+
+function setBeforeEach(action) { beforeEach = action };
+
+function runTBody(name, testBody) {
     let result = new TestResult(name)
     let testStart = Date.now();
     
     try {
+        if (beforeEach) beforeEach();
         testBody();
         result.setPassed(true);
     }
@@ -29,5 +34,9 @@ module.exports = function runTBody(name, testBody) {
     let elapsed = Date.now() - testStart;
     result.setTime(elapsed);
     sendResult(result);
+    
+    return result.passed;
 }
 
+
+module.exports = {runTBody, setBeforeEach}
