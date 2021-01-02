@@ -58,4 +58,4 @@ Below are listed the exposed portions of the API as of the first release.
 
 ## v1.4
 - Added `beforeEach(action:function)`
-- `test` returns success of test as `boolean`;
+- `test` returns success of test as `boolean`
