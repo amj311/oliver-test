@@ -8,8 +8,6 @@
 - Logging options for `runTestDir()` (only failed, only results, etc)
   - Config object for constructor possible for v2
 - CLI
-- Assertions
-- beforeEach for all tests in a file
 
 # Release Summaries <!-- omit in toc -->
 
