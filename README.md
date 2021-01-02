@@ -20,6 +20,7 @@ A lightweight and easy-to-use library for testing JavaScript and TypeScript.
 - [Writing Tests](#writing-tests)
   - [Test Suites](#test-suites)
   - [Assertions](#assertions)
+  - [beforeEach()](#beforeeach)
   - [Handling Errors](#handling-errors)
 - [Mocking](#mocking)
   - [when()](#when)
@@ -165,6 +166,36 @@ Assertions are all implemented as methods of the `expect` object. These are the 
 
 
 
+### beforeEach()
+
+The `beforeEach(action:function)` function receives a callback function and sets it to be called immediately before every subsequent test body in the same file. It is typically called before any test in the same file. This is useful to ensure that variables are set/reset to specific values before each test.
+
+Example usage:
+
+``` js
+// example.test.js
+
+const { expect, test, beforeEach } = require('olive-test');
+
+let num;
+const numVal = 5;
+
+beforeEach(()=>{
+  num = numVal;
+})
+
+test("Change num", ()=>{
+  num = numVal*2;
+  expect.notEqual(num,numVal);
+})
+
+
+test("num has been reset", ()=>{
+  expect.equal(num,numVal);
+})
+```
+
+
 ### Handling Errors
 
 If an error is not caught within an individual test body the test will fail and print the error.
@@ -172,6 +203,8 @@ If an error is not caught within an individual test body the test will fail and 
 If an error is not caught during a test suite the suite will fail regardless of how many individual tests had passed.
 
 Any output to `stderr` is considered an error and will fail the test suite.
+
+
 
 
 

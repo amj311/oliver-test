@@ -33,3 +33,9 @@ test("beforeEach resets vars", ()=>{
 
     expect.true(success);
 })
+
+test("vars have been reset", ()=>{
+    expect.equal(num,numVal);
+    expect.equal(string,stringVal);
+    expect.equal(bool,boolVal);
+})
